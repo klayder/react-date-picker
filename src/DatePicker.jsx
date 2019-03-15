@@ -168,6 +168,7 @@ export default class DatePicker extends PureComponent {
       className: datePickerClassName, // Unused, here to exclude it from calendarProps
       onChange,
       value,
+      children,
       ...calendarProps
     } = this.props;
 
@@ -182,6 +183,9 @@ export default class DatePicker extends PureComponent {
             value={value || null}
             {...calendarProps}
           />
+
+          {children}
+
         </div>
       </Fit>
     );
@@ -240,6 +244,7 @@ DatePicker.defaultProps = {
   clearIcon: ClearIcon,
   isOpen: null,
   returnValue: 'start',
+  children: null,
 };
 
 DatePicker.propTypes = {
@@ -260,6 +265,7 @@ DatePicker.propTypes = {
   returnValue: PropTypes.oneOf(['start', 'end', 'range']),
   required: PropTypes.bool,
   showLeadingZeros: PropTypes.bool,
+  children: PropTypes.node,
 };
 
 polyfill(DatePicker);

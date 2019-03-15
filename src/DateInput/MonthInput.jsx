@@ -49,7 +49,7 @@ export default class MonthInput extends PureComponent {
         onFocus={event => select(event.target)}
         onKeyDown={onKeyDown}
         onKeyUp={event => updateInputWidth(event.target)}
-        placeholder="--"
+        placeholder=".."
         ref={(ref) => {
           if (ref) {
             updateInputWidth(ref);
@@ -61,7 +61,7 @@ export default class MonthInput extends PureComponent {
         }}
         type="number"
         required={required}
-        value={value !== null ? value : ''}
+        value={value !== null ? `00${value}`.slice(-2) : ''}
       />,
     ];
   }

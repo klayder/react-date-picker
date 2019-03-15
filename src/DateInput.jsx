@@ -334,8 +334,26 @@ export default class DateInput extends PureComponent {
   onChange = (event) => {
     const { name, value } = event.target;
 
-    this.setState(
-      { [name]: value ? parseInt(value, 10) : null },
+    if (Number.isNaN(+value)) {
+      return null;
+    }
+
+    let item = '';
+
+    switch (name) {
+      case 'year':
+        item = `${value}`.slice(-4);
+        break;
+      case 'day':
+        item = `${value}`.slice(-2);
+        break;
+      case 'month':
+        item = `${value}`.slice(-2);
+        break;
+      default:
+    }
+    return this.setState(
+      { [name]: value ? item : null },
       this.onChangeExternal,
     );
   }
@@ -389,6 +407,7 @@ export default class DateInput extends PureComponent {
       onChange(null, false);
     } else if (
       formElements.every(formElement => formElement.value && formElement.checkValidity())
+      && values.year.length === 4
     ) {
       const proposedValue = new Date(values.year, (values.month || 1) - 1, values.day || 1);
       const processedValue = this.getProcessedValue(proposedValue);

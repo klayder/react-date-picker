@@ -66,7 +66,7 @@ export default class DayInput extends PureComponent {
         onFocus={event => select(event.target)}
         onKeyDown={onKeyDown}
         onKeyUp={event => updateInputWidth(event.target)}
-        placeholder="--"
+        placeholder=".."
         ref={(ref) => {
           if (ref) {
             updateInputWidth(ref);
@@ -78,7 +78,7 @@ export default class DayInput extends PureComponent {
         }}
         required={required}
         type="number"
-        value={value !== null ? value : ''}
+        value={value !== null ? `00${value}`.slice(-2) : ''}
       />,
     ];
   }
